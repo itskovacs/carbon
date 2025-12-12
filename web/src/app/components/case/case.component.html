@@ -38,10 +38,10 @@
     <p-button text pTooltip="Settings" icon="pi pi-cog spin" (click)="openSettingsModal()" />
   </div>
 
-  <div class="grid fixed top-24 right-8 z-50 w-[515px] max-w-1/5 2xl:max-w-2/5">
+  <div class="grid fixed top-24 right-8 z-50 w-[515px] max-w-1/5 2xl:max-w-2/5 santa-card santa-sm-reverse">
     @if (isFilterMode) {
     <div @backslideY class="bg-white dark:bg-surface-900 p-4 aslide-y max-h-96 transition overflow-y-auto 
-  whitespace-nowrap border border-gray-100 shadow-sm rounded-md font-normal text-sm">
+  whitespace-nowrap border border-gray-100 shadow-sm rounded-md font-normal text-sm santa-card santa-sm">
       <div [formGroup]="eventForm" class="flex items-center gap-4">
         <input type="text" size="large" class="h-12" fluid pInputText [formControl]="searchInputRegex"
           placeholder="Search ..." />
@@ -69,7 +69,7 @@
         </div>
       </div>
 
-      <div class="grid grid-cols-2 lg:grid-cols-3 mt-2 gap-2">
+      <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 mt-2 gap-2">
         @for (category of categories; track category.name) {
         <div class="p-4 flex gap-2 select-none shadow rounded justify-start items-center cursor-pointer"
           (click)="toggleCategoryFilter(category.name)">
@@ -83,7 +83,7 @@
     </div>
     }
 
-    <div class="mt-4 bg-white dark:bg-surface-900 p-4 aslide-x max-h-96 transition overflow-y-auto
+    <div [class]="isFilterMode ? 'mt-4' : 'mt-0'" class="bg-white dark:bg-surface-900 p-4 aslide-x max-h-96 transition overflow-y-auto
     whitespace-nowrap border border-gray-100 shadow-sm rounded-md font-normal text-sm">
       <h1 class="text-xl font-medium text-slate-700 dark:text-slate-200 mb-2">Tasks</h1>
       @defer() {
@@ -169,7 +169,7 @@
       <div class="fixed top-0 border-l border-dashed h-full"></div>
       <div
         class="relative z-50 mb-12 mt-8 p-4 border-s bg-gray-50 rounded-e-md border-gray-200 dark:bg-gray-800 dark:border-gray-700">
-        <div class="ms-6">
+        <div class="ms-6 santa-card">
           <span
             class="absolute flex items-center justify-center bg-gray-50 top-4 w-12 h-12 rounded-full -start-6 ring-4 ring-white dark:bg-gray-800 dark:ring-gray-900">
             <img class="object-cover rounded-full shadow-lg" src="favicon.png" />
@@ -265,7 +265,7 @@
       </div>
       } @empty {
       <div class="flex justify-center mt-8 col-span-full">
-        <div class="py-8 px-4 mx-auto max-w-screen-xl sm:py-16 lg:px-6">
+        <div class="py-8 px-4 mx-auto max-w-screen-xl sm:py-16 xl:px-6">
           <div class="max-w-screen-md">
             <div class="flex justify-center items-center">
               <h2 class="mb-0 text-4xl tracking-tight font-extrabold text-gray-900">
@@ -275,7 +275,7 @@
             </div>
             <p class="mt-4 font-light text-center text-gray-500 text-sm md:text-base">
               @if (isFilterMode) {
-            <div class="grid gap-2 grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
+            <div class="grid gap-2 grid-cols-2 md:grid-cols-3 xl:grid-cols-5">
               @if (searchInputRegex.value) {
               <span
                 class="bg-emerald-100 text-emerald-800 text-sm font-medium px-2.5 py-0.5 rounded dark:bg-emerald-500 dark:text-emerald-100">{{
